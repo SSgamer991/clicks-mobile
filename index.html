@@ -1,0 +1,77 @@
+```html
+<!-- 
+    This HTML code maintains the original logic and functionality of the provided Python code.
+    It uses JavaScript to handle the click event and update the click count and high score.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicks</title>
+    <style>
+        /* Set the background color and font family */
+        body {
+            background-color: black;
+            font-family: Roboto, sans-serif;
+        }
+        
+        /* Style the clicker image */
+        #clicker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+        
+        /* Style the click count and high score text */
+        #click-count {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        The clicker image is represented by a div element with an id of "clicker".
+        The click count and high score are displayed in a paragraph element with an id of "click-count".
+    -->
+    <img id="clicker" src="clicker.gif" alt="Clicker" width="100" height="100">
+    <p id="click-count">Clicks: 0  High Score: 0</p>
+
+    <script>
+        // Get the clicker image and click count elements
+        const clicker = document.getElementById('clicker');
+        const clickCount = document.getElementById('click-count');
+
+        // Initialize the click count and high score
+        let clicks = 0;
+        let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
+
+        // Update the click count and high score text
+        clickCount.textContent = `Clicks: ${clicks}  High Score: ${highScore}`;
+
+        // Add an event listener to the clicker image
+        clicker.addEventListener('click', () => {
+            // Increment the click count
+            clicks++;
+
+            // Update the high score if necessary
+            if (clicks > highScore) {
+                highScore = clicks;
+                localStorage.setItem('highScore', highScore);
+            }
+
+            // Update the click count and high score text
+            clickCount.textContent = `Clicks: ${clicks}  High Score: ${highScore}`;
+        });
+    </script>
+</body>
+</html>
+```
